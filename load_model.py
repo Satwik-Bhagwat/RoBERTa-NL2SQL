@@ -1,26 +1,26 @@
 import torch
 import os
 from seq2sql_model_classes import Seq2SQL_v1
-from transformers import XLNetConfig, XLNetModel, XLNetTokenizer
+from transformers import GPT2Config, GPT2Model, GPT2Tokenizer
 
 device = torch.device("cuda")
 
-def get_XLNet_model():
+def get_gpt2_model():
 
     # Initializing a XLNet configuration
-    configuration = XLNetConfig()
+    configuration = GPT2Config()
 
     # Initializing a model from the configuration
-    XLNet_Model = XLNetModel(configuration).from_pretrained("xlnet-base-cased")
-    XLNet_Model.to(device)
+    gpt2_Model = GPT2Model(configuration).from_pretrained("gpt2")
+    gpt2_Model.to(device)
 
     # Accessing the model configuration
-    configuration = XLNet_Model.config
+    configuration = gpt2_Model.config
 
     #get the XLNet Tokenizer
-    tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased')
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
-    return XLNet_Model, tokenizer, configuration
+    return gpt2_Model, tokenizer, configuration
 
 
 def get_seq2sql_model(Xlnet_hidden_layer_size, number_of_layers = 2,
