@@ -11,14 +11,14 @@ def get_XLNet_model():
     configuration = XLNetConfig()
 
     # Initializing a model from the configuration
-    XLNet_Model = XLNetModel(configuration).from_pretrained("XLNet-base")
+    XLNet_Model = XLNetModel(configuration).from_pretrained("xlnet-base-cased")
     XLNet_Model.to(device)
 
     # Accessing the model configuration
     configuration = XLNet_Model.config
 
     #get the XLNet Tokenizer
-    tokenizer = XLNetTokenizer.from_pretrained('XLNet-base')
+    tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased')
 
     return XLNet_Model, tokenizer, configuration
 
