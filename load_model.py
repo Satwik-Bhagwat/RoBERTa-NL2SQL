@@ -1,26 +1,26 @@
 import torch
 import os
 from seq2sql_model_classes import Seq2SQL_v1
-from transformers import ElectraTokenizer, ElectraModel, ElectraConfig
+from transformers import DistilBertTokenizer, DistilBertModel, DistilBertConfig
 
 device = torch.device("cuda")
 
-def get_electra_model():
+def get_distilbert_model():
 
     # Initializing a XLNet configuration
-    configuration = ElectraConfig()
+    configuration = DistilBertConfig()
 
     # Initializing a model from the configuration
-    electra_Model = ElectraModel(configuration).from_pretrained("google/electra-small-discriminator")
-    electra_Model.to(device)
+    distilbert_Model = DistilBertModel(configuration).from_pretrained("distilbert-base-uncased")
+    distilbert_Model.to(device)
 
     # Accessing the model configuration
-    configuration = electra_Model.config
+    configuration = distilbert_Model.config
 
     #get the XLNet Tokenizer
-    tokenizer = ElectraTokenizer.from_pretrained("google/electra-small-discriminator")
+    tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
 
-    return electra_Model, tokenizer, configuration
+    return distilbert_Model, tokenizer, configuration
 
 
 def get_seq2sql_model(Xlnet_hidden_layer_size, number_of_layers = 2,
