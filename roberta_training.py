@@ -172,7 +172,7 @@ def get_roberta_output(model_roberta, tokenizer, nlu_t, headers, max_seq_length)
     all_input_mask = torch.tensor(input_mask, dtype=torch.long).to(device)
 
     # 4. Generate RoBERTa output.
-    check, all_encoder_layer = model_roberta(input_ids=all_input_ids, attention_mask=all_input_mask, output_hidden_states=True)
+    check, _, all_encoder_layer = model_roberta(input_ids=all_input_ids, attention_mask=all_input_mask, output_hidden_states=True)
     all_encoder_layer = list(all_encoder_layer)
 
     assert all((check == all_encoder_layer[-1]).tolist())
