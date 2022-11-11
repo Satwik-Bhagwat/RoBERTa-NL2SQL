@@ -24,7 +24,7 @@ def get_data(file_path: str,batch_size: int):
     dev_data = []
     dev_table = {}
 
-    with open(file_path + '/dev_knowledge.jsonl') as dev_data_file:
+    with open(file_path + '/dev_knowledge_small.jsonl') as dev_data_file:
         for idx, line in enumerate(dev_data_file):
             current_line = json.loads(line.strip())
             dev_data.append(current_line)
@@ -38,7 +38,7 @@ def get_data(file_path: str,batch_size: int):
     train_data = []
     train_table = {}
 
-    with open(file_path + '/train_knowledge.jsonl') as train_data_file:
+    with open(file_path + '/train_knowledge_small.jsonl') as train_data_file:
         train_data_size = 0
         for idx, line in enumerate(train_data_file):
             current_line = json.loads(line.strip())
@@ -73,7 +73,7 @@ def get_test_data(file_path: str,batch_size: int):
     test_data=[]
     test_table = {}
     
-    with open(file_path + '/test_knowledge.jsonl') as test_data_file:
+    with open(file_path + '/test_knowledge_small.jsonl') as test_data_file:
         for idx, line in enumerate(test_data_file):
             current_line = json.loads(line.strip())
             test_data.append(current_line)
