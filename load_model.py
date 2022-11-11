@@ -1,26 +1,26 @@
 import torch
 import os
 from seq2sql_model_classes import Seq2SQL_v1
-from transformers import GPT2Config, GPT2Model, GPT2Tokenizer
+from transformers import DebertaConfig, DebertaModel, DebertaTokenizer
 
 device = torch.device("cuda")
 
 def get_gpt2_model():
 
     # Initializing a XLNet configuration
-    configuration = GPT2Config()
+    configuration = DebertaConfig()
 
     # Initializing a model from the configuration
-    gpt2_Model = GPT2Model(configuration).from_pretrained("gpt2")
-    gpt2_Model.to(device)
+    deberta_Model = DebertaModel(configuration).from_pretrained("microsoft/deberta-base")
+    deberta_Model.to(device)
 
     # Accessing the model configuration
-    configuration = gpt2_Model.config
+    configuration = deberta_Model.config
 
     #get the XLNet Tokenizer
-    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+    tokenizer = DebertaTokenizer.from_pretrained("microsoft/deberta-base")
 
-    return gpt2_Model, tokenizer, configuration
+    return deberta_Model, tokenizer, configuration
 
 
 def get_seq2sql_model(Xlnet_hidden_layer_size, number_of_layers = 2,
