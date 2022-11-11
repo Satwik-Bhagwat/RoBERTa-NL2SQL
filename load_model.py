@@ -1,26 +1,26 @@
 import torch
 import os
 from seq2sql_model_classes import Seq2SQL_v1
-from transformers import DistilBertTokenizer, DistilBertModel, DistilBertConfig
+from transformers import GPT2Config, GPT2Model, GPT2Tokenizer
 
 device = torch.device("cuda")
 
-def get_distilbert_model():
+def get_gpt2_model():
 
     # Initializing a XLNet configuration
-    configuration = DistilBertConfig()
+    configuration = GPT2Config()
 
     # Initializing a model from the configuration
-    distilbert_Model = DistilBertModel(configuration).from_pretrained("distilbert-base-uncased")
-    distilbert_Model.to(device)
+    gpt2_Model = GPT2Model(configuration).from_pretrained("gpt2")
+    gpt2_Model.to(device)
 
     # Accessing the model configuration
-    configuration = distilbert_Model.config
+    configuration = gpt2_Model.config
 
     #get the XLNet Tokenizer
-    tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+    tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
 
-    return distilbert_Model, tokenizer, configuration
+    return gpt2_Model, tokenizer, configuration
 
 
 def get_seq2sql_model(Xlnet_hidden_layer_size, number_of_layers = 2,
